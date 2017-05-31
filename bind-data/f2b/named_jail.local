@@ -1,0 +1,25 @@
+[refuse-dns-udp]
+enabled         = true
+filter          = named-refused
+port            = 53,953
+protocol        = udp
+logpath         = /etc/bind/data/logs/security.log
+bantime         = 900
+findtime        = 300
+maxretry        = 5
+ignoreip        = 127.0.0.1/8 192.168.20.0/24 192.168.178.0/24 172.17.0.0/16
+backend         = pyinotify
+usedns          = no
+
+[refuse-dns-tcp]
+enabled         = true
+filter          = named-refused
+port            = 53,953
+protocol        = tcp
+logpath         = /etc/bind/data/logs/security.log
+bantime         = 900
+findtime        = 300
+maxretry        = 5
+ignoreip        = 127.0.0.1/8 192.168.20.0/24 192.168.178.0/24 172.17.0.0/16
+backend         = pyinotify
+usedns          = no
