@@ -15,3 +15,4 @@ In the f2b Directory is a sample fail2ban Jail Config to prevent DDOS Spoofing A
 
 # TODO:
 You can also connect collected instance with --link on port 8053/tcp or other docker containers using --link bind9
+Enable the dnstap feature
