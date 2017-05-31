@@ -1,0 +1,40 @@
+options {
+        directory "/etc/bind/data/cache";
+        key-directory "/etc/bind/data/dnssec/";
+        dnssec-enable yes;
+        dnssec-lookaside auto;
+        dnssec-validation yes;
+
+        //recursion no;
+
+        // forwarders {
+        //      0.0.0.0;
+        // };
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6            { none; };
+
+        allow-recursion         { "trust_net"; };
+        allow-query-cache       { "trust_net"; };
+        allow-query             { "trust_net"; };
+        allow-notify            { none; };
+        allow-transfer          { none; };
+
+        rate-limit {
+                responses-per-second    5;
+                referrals-per-second    5;
+                nodata-per-second       5;
+                nxdomains-per-second    5;
+                errors-per-second       5;
+                all-per-second          25;
+                window                  15;
+                log-only                no;
+                qps-scale               250;
+                ipv4-prefix-length      32;
+                ipv6-prefix-length      56;
+                slip                    2;
+                exempt-clients          { "trust_net"; };
+                max-table-size          20000;
+                min-table-size          500;
+        };
+};
