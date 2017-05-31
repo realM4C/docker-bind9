@@ -1,0 +1,31 @@
+logging {
+        channel stdout          { stderr; severity info; print-time yes; print-severity yes; print-category yes; };
+        channel named           { file "/etc/bind/data/logs/named.log" versions 10 size 20M;    print-time yes; print-category yes; };
+        channel security        { file "/etc/bind/data/logs/security.log" versions 10 size 10M; severity dynamic; print-time yes; };
+        channel query           { file "/etc/bind/data/logs/query.log" versions 10 size 20M; severity debug; print-time yes; };
+        channel transfer        { file "/etc/bind/data/logs/transfer.log" versions 10 size 20M;         print-time yes; };
+        channel dnssec          { file "/etc/bind/data/logs/dnssec.log" versions 10 size 20M;           print-time yes; };
+        channel debug           { file "/etc/bind/data/logs/debug.log" versions 10 size 20M;            print-time yes; };
+        channel ratelimit       { file "/etc/bind/data/logs/ratelimit.log" versions 10 size 20M;        print-time yes; };
+        channel resolver        { file "/etc/bind/data/logs/resolver.log" versions 10 size 20M;         print-time yes; };
+
+        category security       { security; };
+        category queries        { query; };
+        category xfer-in        { transfer; };
+        category xfer-out       { transfer; };
+        category notify         { transfer; };
+        category update         { transfer; };
+        category update-security { transfer; };
+        category dnssec         { dnssec; };
+        category queries        { query; };
+        category rate-limit     { ratelimit; };
+        category resolver       { resolver; };
+        category general        { debug; named; };
+        category config         { debug; named; };
+        category edns-disabled  { debug; };
+        category cname          { debug; };
+        category spill          { debug; };
+        category client         { debug; };
+        category network        { debug; };
+        category default        { default_syslog; named; };
+};
