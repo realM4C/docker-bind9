@@ -10,6 +10,9 @@ create_bind_cache_dir() {
         mkdir -m 0775 -p /var/cache/bind
         chown root:${BIND_USER} /var/cache/bind
 }
+apply_permissions() {
+        chown -R ${BIND_USER}:${BIND_USER} /etc/bind
+}
 
 create_pid_dir
 create_bind_cache_dir
@@ -25,7 +28,7 @@ fi
 
 # default behaviour is to launch named
 if [[ -z ${1} ]]; then
-        echo "Starting named..."
+        echo "Starting named under User: $(id ${BIND_USER})..."
         exec $(which named) -u ${BIND_USER} ${EXTRA_ARGS}
 else
         exec "$@"
