@@ -1,6 +1,10 @@
 # docker-bind
 Bind9 on AlpineLinux for HA-Cluster using DRBD9 and GFS2
 
+[![](https://images.microbadger.com/badges/image/amssn/bind9.svg)](https://microbadger.com/images/amssn/bind9 "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/amssn/bind9.svg)](https://microbadger.com/images/amssn/bind9 "Get your own version badge on microbadger.com")
+
 # Usage:
 docker run -d --restart=always --name=bind9 --dns=127.0.0.1 --publish=53:53/udp \ 
 --volume=<to-your-bind-direcotry>/bind/:/etc/bind/ amssn/bind9:latest
