@@ -3,12 +3,9 @@ LABEL maintainer "AMSSN <info@amssn.eu>"
 
 ENV BIND_USER=named
 
-RUN apk add --no-cache bash bind bind-tools
-
-RUN rm -r /etc/bind/*
+RUN apk add --no-cache bash bind bind-tools && rm -r /etc/bind/*
 ADD bind-data /etc/bind/
-RUN rndc-confgen -a
-RUN chown -cR named:named /etc/bind
+RUN rndc-confgen -a && chown -cR named:named /etc/bind
 VOLUME ["/etc/bind"]
 
 ADD entrypoint.sh /sbin/entrypoint.sh
