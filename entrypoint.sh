@@ -29,7 +29,7 @@ fi
 # default behaviour is to launch named
 if [[ -z ${1} ]]; then
         echo "Starting named under User: $(id ${BIND_USER})..."
-        exec $(which named) -u ${BIND_USER} ${EXTRA_ARGS}
+        exec $(which named) -f -u ${BIND_USER} ${EXTRA_ARGS}
 else
         exec "$@"
 fi
